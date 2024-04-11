@@ -1,0 +1,50 @@
+[
+    {
+      "name": "Chocolate Chip Cookies",
+      "genre": "Rock",
+      "price": 10.99,
+      "image": "images/anika.png"
+    },
+    {
+      "name": "Matcha Mille Crepe Cake",
+      "genre": "Rock",
+      "price": 4.99,
+      "image": "images/aubrey.png"
+    },
+    {
+      "name": "Egg Custard Bun",
+      "genre": "Pop",
+      "price": 20.99,
+      "image": "images/connie.png"
+    },
+    {
+      "name": "Steamed Taro Buns",
+      "genre": "Pop",
+      "price": 5.99,
+      "image": "images/dylan.png"
+    },
+    {
+      "name": "Chocolate Fudge Brownie",
+      "genre": "Rock",
+      "price": 3.99,
+      "image": "images/isaac.png"
+    },
+    {
+      "name": "Macarons",
+      "genre": "Rock",
+      "price": 4.99,
+      "image": "images/jeff.png"
+    },
+    {
+      "name": "Multigrain Bread",
+      "genre": "Pop",
+      "price": 4.99,
+      "image": "images/jenny.png"
+    },
+    {
+      "name": "Croissant",
+      "genre": "Rock",
+      "price": 2.99,
+      "image": "images/jessie.png"
+    }
+  ]
