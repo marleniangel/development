@@ -1,13 +1,15 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import { sortBy } from "lodash";
 import vinylData from "./assets/vinyldata.json";
 import Vinyl from "./components/vinyl";
 import Cart from "./components/cart";
-import FilterButtons from './components/FilterButtons';
+import FilterButtons from "./components/FilterButtons";
+import SortingButton from "./components/SortingButton";
 
 /* ####### DO NOT TOUCH -- this makes the image URLs work ####### */
-vinylData.forEach((item) => {
-  item.image = process.env.PUBLIC_URL + "/" + item.image;
+vinylData.forEach((vinyl) => {
+  vinyl.image = process.env.PUBLIC_URL + "/" + vinyl.image;
 });
 /* ############################################################## */
 
@@ -15,99 +17,101 @@ function App() {
   // TODO: use useState to create a state variable to hold the state of the cart
   /* add your cart state code here */
   const [cart, updateCart] = useState([]);
-    const [cartPrice, updateCartPrice] = useState(0.0);
-    const [selectedGenre, setSelectedGenre] = useState('All');
-    const [selectedPrice, setSelectedPrice] = useState('All');
+  const [filteredVinyls, setFilteredVinyls] = useState(vinylData);
+  const [cartPrice, updateCartPrice] = useState(0.0);
+  const [selectedGenre, setSelectedGenre] = useState("All");
+  const [selectedPrice, setSelectedPrice] = useState("All");
+  const [isSorted, setIsSorted] = useState(false);
 
-    const handleGenreChange = (genre) => {
-      setSelectedGenre(genre);
-    };
-  
-    const handlePriceChange = (price) => {
-      setSelectedPrice(price);
-    };
-  
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+    filterVinyls(genre, selectedPrice);
+    setIsSorted(false);
+
+  };
+
+  const handlePriceChange = (price) => {
+    setSelectedPrice(price);
+    filterVinyls(selectedGenre, price);
+    setIsSorted(false);
+  };
+
+  const handleSortByPrice = () => {
+    if (!isSorted) {
+      sortVinyls();
+    }
+  };
+
+  const handleClearCart = () => {
+    updateCart([]);
+    updateCartPrice(0.0);
+  };
 
 
-  const filterVinyls = () => {
+  const filterVinyls = (genre, price) => {
     let filteredVinyls = vinylData;
-
-    if (selectedGenre !== 'All') {
-      filteredVinyls = filteredVinyls.filter(item => item.genre === selectedGenre);
+  
+    if (genre !== "All") {
+      filteredVinyls = filteredVinyls.filter(
+        (vinyl) => vinyl.genre === genre
+      );
     }
-
-    if (selectedPrice !== 'All') {
-      const [minPrice, maxPrice] = selectedPrice.split('-').map(Number);
-      filteredVinyls = filteredVinyls.filter(item => item.price >= minPrice && item.price <= maxPrice);
+  
+    if (price !== "All") {
+      const [minPrice, maxPrice] = price.split("-").map(Number);
+      filteredVinyls = filteredVinyls.filter(
+        (vinyl) => vinyl.price >= minPrice && vinyl.price <= maxPrice
+      );
     }
+  
+    setFilteredVinyls(filteredVinyls);
+  };
 
-    return filteredVinyls;
+  const sortVinyls = () => {
+    const sortedResult = sortBy(filteredVinyls, 'price');
+    setFilteredVinyls(sortedResult);
+    setIsSorted(true);
   };
 
   return (
     <div>
-      <FilterButtons 
-        handleGenreChange={handleGenreChange} 
-        handlePriceChange={handlePriceChange} 
+      <FilterButtons
+        handleGenreChange={handleGenreChange}
+        handlePriceChange={handlePriceChange}
       />
 
-      {/* Display filtered books */}
-        {filterVinyls().map((item,  ) => (
-          <Vinyl
+      {/* Sorting button */}
+      <SortingButton handleSortByPrice={handleSortByPrice} />
+
+      {filteredVinyls.map((vinyl, index) => (
+        <Vinyl
           // <li key={item.name}>{item.genre} - ${item.price} </li>
-          name={item.name}
-          genre={item.genre}
-          price={item.price}
-          image={item.image}
+          key={index}
+          name={vinyl.name}
+          genre={vinyl.genre}
+          price={vinyl.price}
+          image={vinyl.image}
           updateCart={updateCart}
           cart={cart}
           updatePrice={updateCartPrice}
           currPrice={cartPrice}
-          />
-        )
-      )}
+        />
+      ))}
       <div>
         <h2>Cart</h2>
         {
-          /* TODO: render a list of items in the cart */
-          <Cart cartItems={cart} cartPrice={cartPrice} curPrice={cartPrice}/>
+          <div>
+          <Cart cartItems={cart} cartPrice={cartPrice} curPrice={cartPrice} />
+          <button onClick={handleClearCart}>Clear Cart</button>
+          </div>
+
         }
       </div>
     </div>
   );
 }
 
-  
 
-{/* //   return (
-//     <div className="App">
-//       <h1>My Bakery</h1> {/* TODO: personalize your bakery (if you want) */}
-//       {vinylData.map( */}
-//         (
-//           item,
-//           // index // TODO: map bakeryData to BakeryItem components
-//         ) => (
-//           <Vinyl  // replace with BakeryItem component
-//           name={item.name}
-//           price={item.price}
-//           description={item.description}
-//           image={item.image}
-//           updateCart={updateCart}
-//           cart={cart}
-//           updatePrice={updateCartPrice}
-//           currPrice={cartPrice}
-//           />
-//         )
-//       )}
-//       <div>
-//         <h2>Cart</h2>
-//         {
-//           /* TODO: render a list of items in the cart */
-//           <Cart cartItems={cart} cartPrice={cartPrice} curPrice={cartPrice}/>
-//         }
-//       </div>
-//     </div>
-//   );
-// }
+
 
 export default App;

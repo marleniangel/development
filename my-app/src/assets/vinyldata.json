@@ -1,50 +1,74 @@
 [
     {
-      "name": "Chocolate Chip Cookies",
-      "genre": "Rock",
+      "name": "Famous Monsters",
+      "genre": "Punk",
       "price": 10.99,
-      "image": "images/anika.png"
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Matcha Mille Crepe Cake",
-      "genre": "Rock",
-      "price": 4.99,
-      "image": "images/aubrey.png"
+      "name": "Bossanova",
+      "genre": "Alternative",
+      "price": 14.99,
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Egg Custard Bun",
-      "genre": "Pop",
+      "name": "The Queen is Dead",
+      "genre": "Alternative",
       "price": 20.99,
-      "image": "images/connie.png"
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Steamed Taro Buns",
-      "genre": "Pop",
-      "price": 5.99,
-      "image": "images/dylan.png"
+      "name": "London Calling",
+      "genre": "Punk",
+      "price": 15.99,
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Chocolate Fudge Brownie",
-      "genre": "Rock",
-      "price": 3.99,
-      "image": "images/isaac.png"
+      "name": "OK Computer",
+      "genre": "Alternative",
+      "price": 13.99,
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Macarons",
-      "genre": "Rock",
+      "name": "Rocket to Russia",
+      "genre": "Punk",
       "price": 4.99,
-      "image": "images/jeff.png"
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Multigrain Bread",
-      "genre": "Pop",
+      "name": "Bad Brains",
+      "genre": "Punk",
       "price": 4.99,
-      "image": "images/jenny.png"
+      "image": "images/albumcover.png"
     },
     {
-      "name": "Croissant",
-      "genre": "Rock",
-      "price": 2.99,
-      "image": "images/jessie.png"
-    }
+      "name": "The Stone Roses",
+      "genre": "Alternative",
+      "price": 12.99,
+      "image": "images/albumcover.png"
+    },
+    {
+        "name": "Doolittle",
+        "genre": "Alternative",
+        "price": 22.99,
+        "image": "images/albumcover.png"
+      },
+      {
+        "name": "Is This It",
+        "genre": "Alternative",
+        "price": 23.99,
+        "image": "images/albumcover.png"
+      },
+      {
+        "name": "In Utero",
+        "genre": "Alternative",
+        "price": 16.99,
+        "image": "images/albumcover.png"
+      },
+      {
+        "name": "Surfer Rosa",
+        "genre": "Alternative",
+        "price": 8.99,
+        "image": "images/albumcover.png"
+      }
   ]

@@ -1,49 +1,57 @@
 export default function Button(props) {
-    function handleClick() {
-      // const nextCart = { name: props.name, price: props.price, number: 1 };
-      let newItem = true;
-      let updatePrice = 0.0;
-  
-      // Re-render with the new array
-  
-      let newCartItem = {
-        name: props.name,
-        price: props.price,
-        number: 1,
-      };
-  
-      for (let i = 0; i < props.cartItems.length; i++) {
-        console.log(props.cartItems[i].name);
-        if (newCartItem.name === props.cartItems[i].name) {
-          newItem = false;
-          updatePrice = props.cartItems[i].price;
-        }
-      }
-  
-      if (newItem) {
-        props.updateCart([...props.cartItems, newCartItem]);
-        updatePrice = newCartItem.price;
-      } else {
-        props.updateCart(
-          props.cartItems.map((cartItem) => {
-            if (cartItem.name === newCartItem.name) {
-              // Create a *new* object with changes
-              return { ...cartItem, number: cartItem.number + 1 };
-            } else {
-              // No changes
-              return cartItem;
+    function handleAddToCart() {
+        // Logic to add item to cart
+        let newItem = true;
+        let updatePrice = 0.0;
+
+        let newCartItem = {
+            name: props.name,
+            price: props.price,
+            number: 1,
+        };
+
+        for (let i = 0; i < props.cartItems.length; i++) {
+            if (newCartItem.name === props.cartItems[i].name) {
+                newItem = false;
+                updatePrice = props.cartItems[i].price;
             }
-          })
-        );
-      }
-      let newPrice = props.currPrice + updatePrice;
-      let fixedPrice = Math.round(newPrice * 100) / 100;
-      props.updatePrice(fixedPrice);
+        }
+
+        if (newItem) {
+            props.updateCart([...props.cartItems, newCartItem]);
+            updatePrice = newCartItem.price;
+        } else {
+            props.updateCart(
+                props.cartItems.map((cartItem) => {
+                    if (cartItem.name === newCartItem.name) {
+                        return { ...cartItem, number: cartItem.number + 1 };
+                    } else {
+                        return cartItem;
+                    }
+                })
+            );
+        }
+
+        let newPrice = props.currPrice + updatePrice;
+        let fixedPrice = Math.round(newPrice * 100) / 100;
+        props.updatePrice(fixedPrice);
     }
-  
+
+    function handleRemoveFromCart() {
+        // Logic to remove item from cart
+        const updatedCart = props.cartItems.filter((item) => item.name !== props.name);
+        const removedItem = props.cartItems.find((item) => item.name === props.name);
+        const newPrice = props.currPrice - removedItem.price * removedItem.number;
+        props.updateCart(updatedCart);
+        props.updatePrice(newPrice);
+    }
+
     return (
-      <div className="Button">
-        <button onClick={handleClick}>Add to Cart</button>
-      </div>
+        <div className="Button">
+            <button onClick={handleAddToCart}>Add to Cart</button>
+            {props.isInCart && (
+                <button onClick={handleRemoveFromCart}>Remove from Cart</button>
+            )}
+        </div>
     );
-  }
+}

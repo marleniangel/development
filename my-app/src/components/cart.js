@@ -4,7 +4,6 @@ export default function Cart(props) {
         <div className="Cart">
           <div className="cart">
             <div>
-              <h1>Your Cart</h1>
               <p>Nothing here yet</p>
             </div>
   

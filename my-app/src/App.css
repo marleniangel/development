@@ -12,6 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.vinyl-image {
+  /* Set a maximum width and height for the images */
+  max-width: 150px; /* Adjust the value as needed */
+  max-height: 150px; /* Adjust the value as needed */
+}
 
 .App-header {
   background-color: #282c34;
