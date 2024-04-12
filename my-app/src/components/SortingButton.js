@@ -2,9 +2,11 @@ import React from 'react';
 
 const SortingButton = ({ handleSortByPrice }) => {
   return (
-    <div>
-      <button onClick={handleSortByPrice}>Sort by Price</button>
-    </div>
+      <div className="sorting-group">
+        <span>Sort Vinyls:</span>
+        <button onClick={handleSortByPrice}>(Low - High)</button>
+      </div>
+
   );
 };
 

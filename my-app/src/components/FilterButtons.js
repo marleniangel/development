@@ -1,25 +1,29 @@
-import React from 'react';
+import React from "react";
 
 const FilterButtons = ({ handleGenreChange, handlePriceChange }) => {
   return (
-    <div>
+    <div className="filter-buttons-container">
       {/* Genre filter buttons */}
-      <div>
-        <button onClick={() => handleGenreChange('All')}>All Genres</button>
-        {/* Assume you have a list of genres available in your data */}
-        {['Alternative','Punk', /* Add more genres */].map(genre => (
-          <button key={genre} onClick={() => handleGenreChange(genre)}>{genre}</button>
+      <div className="filter-group">
+        <span>Filter by Genre: </span>
+        <button onClick={() => handleGenreChange("All")}>All Genres</button>
+        {["Alternative", "Punk" ].map((genre) => (
+          <button key={genre} onClick={() => handleGenreChange(genre)}>
+            {genre}
+          </button>
         ))}
       </div>
 
       {/* Price filter buttons */}
       <div>
-        <button onClick={() => handlePriceChange('All')}>All Prices</button>
-        <button onClick={() => handlePriceChange('0-10')}>$0 - $10</button>
-        <button onClick={() => handlePriceChange('11-29')}>$11 - $29</button>
-        {/* Add more price range buttons */}
-      </div>
-    </div>
+      <div className="filter-group">
+          <span>Filter by Price: </span>
+          <button onClick={() => handlePriceChange("All")}>All Prices</button>
+          <button onClick={() => handlePriceChange("0-10")}>$0 - $10</button>
+          <button onClick={() => handlePriceChange("11-25")}>$11 - $25</button>
+        </div>
+       </div>
+     </div>
   );
 };
 

@@ -1,6 +1,5 @@
 export default function Button(props) {
     function handleAddToCart() {
-        // Logic to add item to cart
         let newItem = true;
         let updatePrice = 0.0;
 
@@ -38,7 +37,6 @@ export default function Button(props) {
     }
 
     function handleRemoveFromCart() {
-        // Logic to remove item from cart
         const updatedCart = props.cartItems.filter((item) => item.name !== props.name);
         const removedItem = props.cartItems.find((item) => item.name === props.name);
         const newPrice = props.currPrice - removedItem.price * removedItem.number;
@@ -48,9 +46,9 @@ export default function Button(props) {
 
     return (
         <div className="Button">
-            <button onClick={handleAddToCart}>Add to Cart</button>
+            <button className="cart-button" onClick={handleAddToCart}>Add to Cart</button>
             {props.isInCart && (
-                <button onClick={handleRemoveFromCart}>Remove from Cart</button>
+                <button className="cart-button" onClick={handleRemoveFromCart}>Remove from Cart</button>
             )}
         </div>
     );

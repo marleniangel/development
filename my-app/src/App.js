@@ -14,8 +14,6 @@ vinylData.forEach((vinyl) => {
 /* ############################################################## */
 
 function App() {
-  // TODO: use useState to create a state variable to hold the state of the cart
-  /* add your cart state code here */
   const [cart, updateCart] = useState([]);
   const [filteredVinyls, setFilteredVinyls] = useState(vinylData);
   const [cartPrice, updateCartPrice] = useState(0.0);
@@ -82,10 +80,9 @@ function App() {
 
       {/* Sorting button */}
       <SortingButton handleSortByPrice={handleSortByPrice} />
-
+      <hr />
       {filteredVinyls.map((vinyl, index) => (
         <Vinyl
-          // <li key={item.name}>{item.genre} - ${item.price} </li>
           key={index}
           name={vinyl.name}
           genre={vinyl.genre}
@@ -98,11 +95,12 @@ function App() {
         />
       ))}
       <div>
+      <hr />
         <h2>Cart</h2>
         {
           <div>
           <Cart cartItems={cart} cartPrice={cartPrice} curPrice={cartPrice} />
-          <button onClick={handleClearCart}>Clear Cart</button>
+          <button className="cart-button" onClick={handleClearCart}>Clear Cart</button>
           </div>
 
         }
